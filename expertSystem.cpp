@@ -26,7 +26,8 @@ void ES::creatKB()
 	while (!in.atEnd()) {
 		QString line = in.readLine();
 		Cause tmpCause;
-		tmpCause.setCauseName(line);
+		
+
 		qDebug() << line << endl;
 	}
 }
