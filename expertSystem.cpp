@@ -40,6 +40,8 @@ void ES::creatKB()
 		tmpRule.setResult(result);
 		tmpRule.setCause(qc);
 		knowledgeBase.push_back(tmpRule);
-		qDebug() << line << endl;
+		
 	}
+
+	
 }
