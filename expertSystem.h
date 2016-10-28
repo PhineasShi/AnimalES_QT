@@ -3,6 +3,7 @@
 #include <QTextStream>
 #include <qdebug.h>
 #include <QStringList>
+#include <QList>
 #include "rule.h"
 #include "cause.h"
 class ES
@@ -14,10 +15,10 @@ public:
 	
 
 private:
-	std::list<Cause> dataBase;
-	std::list<Cause> conclusion;
-	std::list<Rule> knowledgeBase;
-	std::list<Rule> used;
+	QList<Cause> dataBase;
+	QList<Cause> conclusion;
+	QList<Rule> knowledgeBase;
+	QList<Rule> used;
 	bool isCauseExist(Cause cause);
 	
 
