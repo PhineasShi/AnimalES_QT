@@ -12,6 +12,12 @@ public:
 	ES();
 	~ES();
 	void creatKB();
+	void think();
+	void explain();
+
+
+
+
 
 	/*getters and setters*/
 	void setCauseBase(QList<Cause> cb) { causeBase = cb; };

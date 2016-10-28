@@ -62,3 +62,19 @@ bool ES::isCauseExist(Cause cause)
 	return flag;
 }
 
+
+
+
+
+void ES::think() {
+
+
+
+}
+
+
+void ES::explain() {
+
+
+
+}

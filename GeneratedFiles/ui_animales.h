@@ -15,7 +15,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -25,9 +24,8 @@ QT_BEGIN_NAMESPACE
 class Ui_AnimalESClass
 {
 public:
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
     QWidget *centralWidget;
+    QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *AnimalESClass)
@@ -35,15 +33,12 @@ public:
         if (AnimalESClass->objectName().isEmpty())
             AnimalESClass->setObjectName(QStringLiteral("AnimalESClass"));
         AnimalESClass->resize(600, 400);
-        menuBar = new QMenuBar(AnimalESClass);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        AnimalESClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(AnimalESClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        AnimalESClass->addToolBar(mainToolBar);
         centralWidget = new QWidget(AnimalESClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         AnimalESClass->setCentralWidget(centralWidget);
+        mainToolBar = new QToolBar(AnimalESClass);
+        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        AnimalESClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(AnimalESClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         AnimalESClass->setStatusBar(statusBar);
