@@ -12,10 +12,23 @@ public:
 	ES();
 	~ES();
 	void creatKB();
-	QList<Cause> setCauseBase(QList<Cause> cb);
-	
 
+	/*getters and setters*/
+	void setCauseBase(QList<Cause> cb) { causeBase = cb; };
+	QList<Cause> getCauseBase() { return causeBase; };
 	
+	void setDataBase(QList<Cause> db) { dataBase = db; };
+	QList<Cause> getDataBase() { return dataBase; };
+
+	void setConclusion(QList<Cause> cc) { conclusion = cc; };
+	QList<Cause> getConclusion() { return conclusion; };
+
+	void setKnowledgeBase(QList<Rule> kb) { knowledgeBase = kb; };
+	QList<Rule> getKnowledgeBase() { return knowledgeBase; };
+
+	void setUsed(QList<Rule> u) { used = u; };
+	QList<Rule> getUsed() { return used; };
+
 
 private:
 	QList<Cause> causeBase;

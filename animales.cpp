@@ -5,8 +5,6 @@ AnimalES::AnimalES(QWidget *parent)
 {
 	ES es;
 	es.creatKB();
-
-	
 	
 
 	ui.setupUi(this);

@@ -40,16 +40,13 @@ void ES::creatKB()
 			{
 				causeBase.push_back(cause);
 			}
-
 		}
 
 		tmpRule.setResult(result);
 		tmpRule.setCause(qc);
 		knowledgeBase.push_back(tmpRule);
-		
 	}
 
-	
 }
 
 bool ES::isCauseExist(Cause cause)
@@ -65,7 +62,3 @@ bool ES::isCauseExist(Cause cause)
 	return flag;
 }
 
-QList<Cause> ES::setCauseBase(QList<Cause> cb)
-{
-	causeBase = cb;
-}
