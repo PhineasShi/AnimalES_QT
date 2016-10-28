@@ -52,8 +52,9 @@ void ES::creatKB()
 bool ES::isCauseExist(Cause cause)
 {
 	bool flag = false;
-	for (Cause tmp : dataBase)
+	for (Cause tmp : causeBase)
 	{
+		//qDebug() <<tmp.getCauseName()<<"=="<<cause.getCauseName()<<"?  " << (tmp.getCauseName() == cause.getCauseName()) << endl;
 		if (tmp.getCauseName() == cause.getCauseName())
 		{
 			flag = true;

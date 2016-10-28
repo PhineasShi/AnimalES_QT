@@ -9,13 +9,13 @@ AnimalES::AnimalES(QWidget *parent)
 	QList<Cause> cb=es.getCauseBase();
 	QList<Rule> kb = es.getKnowledgeBase();
 
-	/*for (Cause cause : cb)
+	for (Cause cause : cb)
 	{
 		qDebug() << cause.getCauseName() << endl;
 	}
-*/
 
-	for (Rule rule : kb)
+
+	/*for (Rule rule : kb)
 	{
 		qDebug() << "result:  "<< rule.getResult() << endl;
 		QList<Cause> causes = rule.getCause();
@@ -25,7 +25,7 @@ AnimalES::AnimalES(QWidget *parent)
 			qDebug() << ctmp.getCauseName() << endl;
 		}
 	}
-
+*/
 	ui.setupUi(this);
 }
 
