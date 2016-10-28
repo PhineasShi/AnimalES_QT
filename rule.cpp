@@ -7,12 +7,12 @@ Rule::~Rule()
 {
 }
 
-std::string Rule::getResult()
+QString Rule::getResult()
 {
 	return result;
 }
 
-void Rule::setResult(std::string result)
+void Rule::setResult(QString result)
 {
 	this->result = result;
 }

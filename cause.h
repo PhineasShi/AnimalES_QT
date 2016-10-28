@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string>
+#include <QString>
 
 class Cause
 {
@@ -8,10 +8,10 @@ public:
 	Cause();
 	~Cause();
 
-	std::string getCauseName();
-	void setCauseName(std::string causeName);
+	QString getCauseName();
+	void setCauseName(QString causeName);
 
 private:
-	std::string causeName;
+	QString causeName;
 };
 

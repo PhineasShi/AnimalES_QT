@@ -8,12 +8,12 @@ Cause::~Cause()
 {
 }
 
-std::string Cause::getCauseName()
+QString Cause::getCauseName()
 {
-	return std::string();
+	return causeName;
 }
 
-void Cause::setCauseName(std::string causeName)
+void Cause::setCauseName(QString causeName)
 {
 	this->causeName = causeName;
 }
