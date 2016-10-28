@@ -12,6 +12,8 @@ public:
 	ES();
 	~ES();
 	void creatKB();
+	QList<Cause> setCauseBase(QList<Cause> cb);
+	
 
 	
 

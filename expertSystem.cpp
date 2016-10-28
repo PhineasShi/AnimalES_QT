@@ -64,3 +64,8 @@ bool ES::isCauseExist(Cause cause)
 	}
 	return flag;
 }
+
+QList<Cause> ES::setCauseBase(QList<Cause> cb)
+{
+	causeBase = cb;
+}
