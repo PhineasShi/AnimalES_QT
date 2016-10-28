@@ -13,13 +13,18 @@ ES::~ES()
 
 void ES::creatKB()
 {
+	//以只读的方式打开文件
 	QFile file("ES.dat");
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 		return;
 	QTextStream in(&file);
+	//清空causeBase
 	causeBase.clear();
+	//清空knowledgeBase
 	knowledgeBase.clear();
 	Rule tmpRule;
+
+	//每次读取一行，并根据分隔符将字符串分别用来初始化各数据库
 	while (!in.atEnd()) {
 		QString line = in.readLine();
 		QStringList qstr = line.split(":");
@@ -51,6 +56,9 @@ void ES::creatKB()
 	}
 }
 
+/*
+	判断在causeBase中与给定的cause是否重复
+*/
 bool ES::isCauseExist(Cause cause)
 {
 	bool flag = false;
@@ -64,9 +72,13 @@ bool ES::isCauseExist(Cause cause)
 	return flag;
 }
 
+
+/*
+	在调用think函数之前，应当保证dataBase中有用户输入的前提条件  Causes
+*/
 void ES::think() {
 
-	Cause temp;
+	/*Cause temp;
 	temp.setCauseName("cause1");
 	dataBase.push_back(temp);
 
@@ -74,7 +86,8 @@ void ES::think() {
 	dataBase.push_back(temp);
 
 	temp.setCauseName("cause4");
-	dataBase.push_back(temp);
+	dataBase.push_back(temp);*/
+
 
 	bool endflag = false;
 	while (true)
