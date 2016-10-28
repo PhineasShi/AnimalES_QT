@@ -35,6 +35,12 @@ void ES::creatKB()
 			Cause cause;
 			cause.setCauseName(tmp);
 			qc.push_back(cause);
+
+			if (!isCauseExist(cause))
+			{
+				dataBase.push_back(cause);
+			}
+
 		}
 
 		tmpRule.setResult(result);
@@ -44,4 +50,17 @@ void ES::creatKB()
 	}
 
 	
+}
+
+bool ES::isCauseExist(Cause cause)
+{
+	bool flag = false;
+	for (Cause tmp : dataBase)
+	{
+		if (tmp.getCauseName() == cause.getCauseName())
+		{
+			flag = true;
+		}
+	}
+	return flag;
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QList>
+#include <list>
 
 #include "cause.h"
 class Rule
