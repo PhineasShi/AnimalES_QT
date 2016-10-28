@@ -1,7 +1,4 @@
 #include "expertSystem.h"
-#include <QFile>
-#include <QTextStream>
-#include <qdebug.h>
 
 using namespace std;
 ES::ES()
@@ -25,9 +22,24 @@ void ES::creatKB()
 	Rule tmpRule;
 	while (!in.atEnd()) {
 		QString line = in.readLine();
-		Cause tmpCause;
+		QStringList qstr = line.split(":");
 		
+		QString result = qstr.at(0);
+		QString causes = qstr.at(1);
 
+		QStringList causesQL = causes.split(",");
+
+		QList<Cause> qc;
+		for (QString tmp : causesQL)
+		{
+			Cause cause;
+			cause.setCauseName(tmp);
+			qc.push_back(cause);
+		}
+
+		tmpRule.setResult(result);
+		tmpRule.setCause(qc);
+		knowledgeBase.push_back(tmpRule);
 		qDebug() << line << endl;
 	}
 }

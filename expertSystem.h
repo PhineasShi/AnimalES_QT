@@ -1,6 +1,8 @@
 #pragma once
-#include <list>
-
+#include <QFile>
+#include <QTextStream>
+#include <qdebug.h>
+#include <QStringList>
 #include "rule.h"
 #include "cause.h"
 class ES
