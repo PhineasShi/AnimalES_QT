@@ -1,7 +1,6 @@
 #pragma once
 
-#include <list>
-
+#include <QList>
 #include "cause.h"
 class Rule
 {
@@ -13,11 +12,11 @@ public:
 	void setResult(QString result);
 	bool isLast();
 	void setLast(bool last);
-	std::list<Cause> getCause();
-	void setCause(std::list<Cause> causes);
+	QList<Cause> getCause();
+	void setCause(QList<Cause> causes);
 
 private:
 	QString result;
 	bool last;
-	std::list<Cause> causes;
+	QList<Cause> causes;
 };

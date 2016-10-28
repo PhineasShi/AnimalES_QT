@@ -7,3 +7,8 @@ ES::~ES()
 {
 	//comment here!
 }
+
+void ES::writeKB()
+{
+	QFile file("ES.dat");
+}

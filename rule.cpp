@@ -27,12 +27,12 @@ void Rule::setLast(bool last)
 	this->last = last;
 }
 
-std::list<Cause> Rule::getCause()
+QList<Cause> Rule::getCause()
 {
 	return causes;
 }
 
-void Rule::setCause(std::list<Cause> causes)
+void Rule::setCause(QList<Cause> causes)
 {
 	this->causes = causes;
 }

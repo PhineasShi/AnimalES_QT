@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <QFile>
 
 #include "rule.h"
 #include "cause.h"
@@ -16,6 +17,7 @@ private:
 	std::list<Rule> used;
 
 	void creatKB();
+	void writeKB();
 
 };
 
