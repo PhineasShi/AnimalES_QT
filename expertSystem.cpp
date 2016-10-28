@@ -17,7 +17,7 @@ void ES::creatKB()
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 		return;
 	QTextStream in(&file);
-	dataBase.clear();
+	causeBase.clear();
 	knowledgeBase.clear();
 	Rule tmpRule;
 	while (!in.atEnd()) {
@@ -38,7 +38,7 @@ void ES::creatKB()
 
 			if (!isCauseExist(cause))
 			{
-				dataBase.push_back(cause);
+				causeBase.push_back(cause);
 			}
 
 		}

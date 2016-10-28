@@ -12,9 +12,11 @@ public:
 	ES();
 	~ES();
 	void creatKB();
+
 	
 
 private:
+	QList<Cause> causeBase;
 	QList<Cause> dataBase;
 	QList<Cause> conclusion;
 	QList<Rule> knowledgeBase;
