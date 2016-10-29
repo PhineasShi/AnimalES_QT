@@ -23,6 +23,7 @@ private:
 	Ui::AnimalESClass ui;
 	ES es;
 	RulesMGMT *r;
+
 };
 
 #endif // ANIMALES_H
