@@ -58,75 +58,92 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         listWidget_causes = new QListWidget(RulesMGMT);
         listWidget_causes->setObjectName(QStringLiteral("listWidget_causes"));
+        QFont font;
+        font.setFamily(QStringLiteral("Microsoft YaHei UI Light"));
+        font.setPointSize(10);
+        listWidget_causes->setFont(font);
         listWidget_causes->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
         gridLayout->addWidget(listWidget_causes, 3, 1, 6, 1);
 
         listWidget_rules = new QListWidget(RulesMGMT);
         listWidget_rules->setObjectName(QStringLiteral("listWidget_rules"));
+        listWidget_rules->setFont(font);
         listWidget_rules->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
         gridLayout->addWidget(listWidget_rules, 2, 0, 7, 1);
 
         label = new QLabel(RulesMGMT);
         label->setObjectName(QStringLiteral("label"));
+        label->setFont(font);
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
         label_3 = new QLabel(RulesMGMT);
         label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setFont(font);
 
         gridLayout->addWidget(label_3, 2, 3, 1, 1);
 
         label_2 = new QLabel(RulesMGMT);
         label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setFont(font);
 
         gridLayout->addWidget(label_2, 0, 1, 1, 1);
 
         pushButton_add = new QPushButton(RulesMGMT);
         pushButton_add->setObjectName(QStringLiteral("pushButton_add"));
+        pushButton_add->setFont(font);
 
         gridLayout->addWidget(pushButton_add, 5, 2, 1, 3);
 
         label_4 = new QLabel(RulesMGMT);
         label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setFont(font);
 
         gridLayout->addWidget(label_4, 0, 4, 1, 5);
 
         comboBox_result = new QComboBox(RulesMGMT);
         comboBox_result->setObjectName(QStringLiteral("comboBox_result"));
+        comboBox_result->setFont(font);
         comboBox_result->setEditable(true);
 
         gridLayout->addWidget(comboBox_result, 2, 4, 1, 5);
 
         toolButton_minus = new QToolButton(RulesMGMT);
         toolButton_minus->setObjectName(QStringLiteral("toolButton_minus"));
+        toolButton_minus->setFont(font);
 
         gridLayout->addWidget(toolButton_minus, 3, 2, 1, 1);
 
         comboBox_cause = new QComboBox(RulesMGMT);
         comboBox_cause->setObjectName(QStringLiteral("comboBox_cause"));
+        comboBox_cause->setFont(font);
         comboBox_cause->setEditable(true);
 
         gridLayout->addWidget(comboBox_cause, 2, 1, 1, 1);
 
         toolButton_add = new QToolButton(RulesMGMT);
         toolButton_add->setObjectName(QStringLiteral("toolButton_add"));
+        toolButton_add->setFont(font);
 
         gridLayout->addWidget(toolButton_add, 2, 2, 1, 1);
 
         pushButton_delete = new QPushButton(RulesMGMT);
         pushButton_delete->setObjectName(QStringLiteral("pushButton_delete"));
+        pushButton_delete->setFont(font);
 
         gridLayout->addWidget(pushButton_delete, 6, 2, 2, 3);
 
         pushButton_modify = new QPushButton(RulesMGMT);
         pushButton_modify->setObjectName(QStringLiteral("pushButton_modify"));
+        pushButton_modify->setFont(font);
 
         gridLayout->addWidget(pushButton_modify, 5, 5, 1, 1);
 
         pushButton_quit = new QPushButton(RulesMGMT);
         pushButton_quit->setObjectName(QStringLiteral("pushButton_quit"));
+        pushButton_quit->setFont(font);
 
         gridLayout->addWidget(pushButton_quit, 6, 5, 2, 1);
 

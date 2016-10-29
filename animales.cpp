@@ -9,13 +9,13 @@ AnimalES::AnimalES(QWidget *parent)
 	//es.creatKB();
 	//es.think();
 	//es.explain();
-	r = new  RulesMGMT(es);
+	
 	ui.setupUi(this);
 }
 
 AnimalES::~AnimalES()
 {
-	delete r;
+	
 }
 
 void AnimalES::on_pushButton_createKB_clicked()
@@ -27,7 +27,16 @@ void AnimalES::on_pushButton_createKB_clicked()
 	else
 	{
 		QMessageBox::warning(this, "未发现数据库", "开始初始化规则库");
+		r = new  RulesMGMT(&es);
 		r->exec();
+		delete r;
 	}
+}
+
+void AnimalES::on_pushButton_modify_clicked()
+{
+	r = new  RulesMGMT(&es);
+	r->exec();
+	delete r;
 }
 

@@ -17,6 +17,7 @@ public:
 	~AnimalES();
 public slots:
 	void on_pushButton_createKB_clicked();
+	void on_pushButton_modify_clicked();
 private:
 	Ui::AnimalESClass ui;
 	ES es;

@@ -51,6 +51,10 @@ bool ES::creatKB()
 		}
 		Cause resultCause;
 		resultCause.setCauseName(result);
+		if (!isCauseExist(resultCause))
+		{
+			causeBase.push_back(resultCause);
+		}
 		tmpRule.setResult(resultCause);
 		tmpRule.setLast(isLastbool);
 		tmpRule.setCauses(qc);
