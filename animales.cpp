@@ -40,3 +40,10 @@ void AnimalES::on_pushButton_modify_clicked()
 	delete r;
 }
 
+void AnimalES::on_pushButton_think_clicked()
+{
+	es.think();
+	QString result = es.getConclusion().last().getCauseName();
+	QMessageBox::information(this, "推理完成", result);
+}
+
