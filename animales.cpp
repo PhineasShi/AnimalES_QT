@@ -1,4 +1,7 @@
 #include "animales.h"
+
+#pragma execution_character_set("utf-8")
+
 AnimalES::AnimalES(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -6,20 +9,25 @@ AnimalES::AnimalES(QWidget *parent)
 	//es.creatKB();
 	//es.think();
 	//es.explain();
-	
+	r = new  RulesMGMT(es);
 	ui.setupUi(this);
 }
 
 AnimalES::~AnimalES()
 {
-
+	delete r;
 }
 
 void AnimalES::on_pushButton_createKB_clicked()
 {
-	es.creatKB();
-	causeBase = es.getCauseBase();
-	knowledgeBase = es.getKnowledgeBase();
-	r.exec();
+	if (es.creatKB())
+	{
+		QMessageBox::information(this,"创建成功","成功加载文件中规则库");
+	}
+	else
+	{
+		QMessageBox::warning(this, "未发现数据库", "开始初始化规则库");
+		r->exec();
+	}
 }
 

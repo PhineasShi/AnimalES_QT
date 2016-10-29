@@ -11,12 +11,13 @@ ES::~ES()
 	//comment here!
 }
 
-void ES::creatKB()
+//TODO 对文件内容为空和格式不正确的判断
+bool ES::creatKB()
 {
 	//以只读的方式打开文件
 	QFile file("ES.dat");
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-		return;
+		return false;
 	QTextStream in(&file);
 	//清空causeBase
 	causeBase.clear();
@@ -48,12 +49,14 @@ void ES::creatKB()
 				causeBase.push_back(cause);
 			}
 		}
-
-		tmpRule.setResult(result);
+		Cause resultCause;
+		resultCause.setCauseName(result);
+		tmpRule.setResult(resultCause);
 		tmpRule.setLast(isLastbool);
-		tmpRule.setCause(qc);
+		tmpRule.setCauses(qc);
 		knowledgeBase.push_back(tmpRule);
 	}
+	return true;
 }
 
 /*
@@ -99,7 +102,7 @@ void ES::think() {
 			ruleNum = knowledgeBase.size();
 			int databaseNum = dataBase.size();
 			Rule rule = knowledgeBase.at(i);
-			QList<Cause> causes = rule.getCause();
+			QList<Cause> causes = rule.getCauses();
 			int causeNum = causes.size();
 			int count = 0;
 			for (int i = 0; i < causeNum; i++)
@@ -122,8 +125,7 @@ void ES::think() {
 				{
 					used.push_back(rule);
 					knowledgeBase.removeAt(i);
-					Cause causet;
-					causet.setCauseName(rule.getResult());
+					Cause causet= rule.getResult();
 					conclusion.push_back(causet);
 					dataBase.push_back(causet);
 					break;
@@ -131,10 +133,9 @@ void ES::think() {
 				else
 				{
 					endflag = true;
-					Cause causet;
-					causet.setCauseName(rule.getResult());
+					Cause causet= rule.getResult();
 					conclusion.push_back(causet);
-					qDebug() << "the last result is :  " << rule.getResult() << endl;
+					qDebug() << "the last result is :  " << rule.getResult().getCauseName() << endl;
 					return;
 				}
 			}

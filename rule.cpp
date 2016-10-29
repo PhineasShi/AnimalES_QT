@@ -7,12 +7,12 @@ Rule::~Rule()
 {
 }
 
-QString Rule::getResult()
+Cause Rule::getResult()
 {
 	return result;
 }
 
-void Rule::setResult(QString result)
+void Rule::setResult(Cause result)
 {
 	this->result = result;
 }
@@ -27,12 +27,12 @@ void Rule::setLast(bool last)
 	this->last = last;
 }
 
-QList<Cause> Rule::getCause()
+QList<Cause> Rule::getCauses()
 {
 	return causes;
 }
 
-void Rule::setCause(QList<Cause> causes)
+void Rule::setCauses(QList<Cause> causes)
 {
 	this->causes = causes;
 }

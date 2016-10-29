@@ -4,13 +4,17 @@
 #include <QDialog>
 #include "ui_rulesmgmt.h"
 
+#include "expertSystem.h"
+
 class RulesMGMT : public QDialog
 {
 	Q_OBJECT
 
 public:
-	RulesMGMT(QDialog *parent = 0);
+	RulesMGMT(ES &es,QDialog *parent = 0);
+
 	~RulesMGMT();
+
 
 public slots:
 	void on_pushButton_quit_clicked();
@@ -18,6 +22,7 @@ public slots:
 
 private:
 	Ui::RulesMGMT ui;
+	ES es;
 	void initLists();
 	
 };

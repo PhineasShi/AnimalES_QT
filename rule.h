@@ -9,15 +9,17 @@ public:
 	Rule();
 	~Rule();
 
-	QString getResult();
-	void setResult(QString result);
+	Cause getResult();
+	void setResult(Cause result);
+
 	bool isLast();
 	void setLast(bool last);
-	QList<Cause> getCause();
-	void setCause(QList<Cause> causes);
+
+	QList<Cause> getCauses();
+	void setCauses(QList<Cause> causes);
 
 private:
-	QString result;
+	Cause result;
 	bool last;
 	QList<Cause> causes;
 };

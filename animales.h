@@ -3,6 +3,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_animales.h"
+#include "QMessageBox"
 
 #include "expertSystem.h"
 #include "rulesmgmt.h"
@@ -18,10 +19,8 @@ public slots:
 	void on_pushButton_createKB_clicked();
 private:
 	Ui::AnimalESClass ui;
-	QList<Cause> causeBase;
-	QList<Rule> knowledgeBase;
 	ES es;
-	RulesMGMT r;
+	RulesMGMT *r;
 };
 
 #endif // ANIMALES_H

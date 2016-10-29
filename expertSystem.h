@@ -11,7 +11,7 @@ class ES
 public:
 	ES();
 	~ES();
-	void creatKB();
+	bool creatKB();
 	void think();
 	void explain();
 
