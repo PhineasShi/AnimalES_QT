@@ -19,6 +19,10 @@ void RulesMGMT::on_pushButton_quit_clicked()
 {
 	this->close();
 }
+void RulesMGMT::on_pushButton_add_clicked()
+{
+
+}
 void RulesMGMT::on_pushButton_delete_clicked()
 {
 	if (ui.listWidget_rules->count()>1)
