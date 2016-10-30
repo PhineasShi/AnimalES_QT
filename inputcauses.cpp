@@ -6,6 +6,7 @@ InputCauses::InputCauses(ES *es,QWidget *parent)
 	this->es = es;
 	ui.setupUi(this);
 	initCauseBox();
+	initCauseList();
 }
 
 InputCauses::~InputCauses()
@@ -21,6 +22,14 @@ void InputCauses::initCauseBox()
 		ui.comboBox_cause->addItem(causeList[i].getCauseName());
 	}
 	ui.comboBox_cause->setCurrentText("");
+}
+void InputCauses::initCauseList()
+{
+	QList<Cause> dataBase = es->getDataBase();
+	for (int i = 0; i < dataBase.length(); i++)
+	{
+		ui.listWidget_causes->addItem(dataBase[i].getCauseName());
+	}
 }
 void InputCauses::on_toolButton_add_clicked()
 {
@@ -39,5 +48,13 @@ void InputCauses::on_toolButton_minus_clicked()
 }
 void InputCauses::on_pushButton_confirm_clicked()
 {
-	//ui.listWidget_causes->item();
+	QList<Cause> dataBase;
+	for (int  i = 0; i < ui.listWidget_causes->count(); i++)
+	{
+		Cause cause;
+		cause.setCauseName(ui.listWidget_causes->item(i)->text());
+		dataBase.push_back(cause);
+	}
+	es->setDataBase(dataBase);
+	this->close();
 }

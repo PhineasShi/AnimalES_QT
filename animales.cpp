@@ -49,51 +49,22 @@ void AnimalES::on_pushButton_modify_clicked()
 
 void AnimalES::on_pushButton_think_clicked()
 {
-
-	QList<Cause> dataBase;
-	Cause temp;
-	temp.setCauseName("暗斑点");
-	dataBase.push_back(temp);
-
-	temp.setCauseName("长脖子");
-	dataBase.push_back(temp);
-
-	temp.setCauseName("长腿");
-	dataBase.push_back(temp);
-
-	temp.setCauseName("有奶");
-	dataBase.push_back(temp);
-
-	temp.setCauseName("毛发");
-	dataBase.push_back(temp);
-
-	temp.setCauseName("有蹄");
-	dataBase.push_back(temp);
-
-	es.setDataBase(dataBase);
-	es.think();
-	if (!es.getConclusion().isEmpty())
-	{
-		QString result = es.getConclusion().last().getCauseName();
-		QMessageBox::information(this, "推理完成", result);
-	}
-	else
-	{
-		QMessageBox::information(this, "推理完成", "推理完成,但并未找到结果");
-	}
-	
-	
-	
-	/*if (!es.getDataBase().isEmpty())
+	if (!es.getDataBase().isEmpty())
 	{
 		es.think();
-		QString result = es.getConclusion().last().getCauseName();
-		QMessageBox::information(this, "推理完成", result);
+		if (!es.getConclusion().isEmpty())
+		{
+			QString result = es.getConclusion().last().getCauseName();
+			QMessageBox::information(this, "推理完成", result);
+		}
+		else
+		{
+			QMessageBox::information(this, "推理完成", "推理完成,但并未找到结果");
+		}
 	}
 	else
 	{
 		QMessageBox::warning(this, "推理失败", "请先输入事实");
-	}*/
-	
+	}
 }
 

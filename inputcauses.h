@@ -23,6 +23,7 @@ private:
 	ES *es;
 
 	void initCauseBox();
+	void initCauseList();
 };
 
 #endif // INPUTCAUSES_H

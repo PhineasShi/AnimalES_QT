@@ -67,7 +67,7 @@ void RulesMGMT::initRuleLists()
 	QList<Rule> knowledgeBase = es->getKnowledgeBase();
 	for (int i = 0; i < knowledgeBase.length(); i++)
 	{
-		QString itemStr = i;
+		QString itemStr;
 		QList<Cause> causes = knowledgeBase[i].getCauses();
 		for (int i = 0; i < causes.length(); i++)
 		{
