@@ -85,30 +85,31 @@ bool ES::isCauseExist(Cause cause)
 */
 void ES::think() {
 
-	Cause temp;
-	temp.setCauseName("cause1");
-	dataBase.push_back(temp);
-
-	temp.setCauseName("cause2");
-	dataBase.push_back(temp);
-
-	temp.setCauseName("cause4");
-	dataBase.push_back(temp);
-
-
 	bool endflag = false;
 	while (true)
 	{
-		int ruleNum = knowledgeBase.size();
+		QList<int> delInx;
+		int conclusionNumPre = conclusion.count();
+		int ruleNum = knowledgeBase.count();
 		int i = 0;
-		while (i<knowledgeBase.size())
+		while (i<knowledgeBase.count())
 		{
-			ruleNum = knowledgeBase.size();
-			int databaseNum = dataBase.size();
+			
+			ruleNum = knowledgeBase.count();
+			int databaseNum = dataBase.count();
 			Rule rule = knowledgeBase.at(i);
 			QList<Cause> causes = rule.getCauses();
-			int causeNum = causes.size();
+			int causeNum = causes.count();
 			int count = 0;
+
+			qDebug() << "rule " << i + 1 << " :   " << endl;
+			qDebug() << rule.getResult().getCauseName() << "  ";
+			for (Cause cause : causes)
+			{
+				qDebug() << cause.getCauseName() << "  ";
+			}
+			qDebug() << endl;
+
 			for (int i = 0; i < causeNum; i++)
 			{	
 				Cause ruleCause = causes.at(i);
@@ -117,16 +118,24 @@ void ES::think() {
 					Cause databaseCause = dataBase.at(j);
 					if (ruleCause.getCauseName() == databaseCause.getCauseName())
 					{
+						delInx.push_back(j);
 						count++;
 						break;
 					}
 				}
 			}
 
-			if (causeNum == count&&count==databaseNum)
+			qDebug() << "-------------match count:----" << count << endl;
+
+			if (causeNum == count)
 			{
 				if (!rule.isLast())
 				{
+					for (int index : delInx)
+					{
+						dataBase.removeAt(index);
+					}
+
 					used.push_back(rule);
 					knowledgeBase.removeAt(i);
 					Cause causet= rule.getResult();
@@ -140,12 +149,34 @@ void ES::think() {
 					Cause causet= rule.getResult();
 					conclusion.push_back(causet);
 					qDebug() << "the last result is :  " << rule.getResult().getCauseName() << endl;
-					return;
+					endflag = true;
+					break;
 				}
 			}
 			i++;
-		}	
+		}
+
+		/*for (Cause cause : dataBase)
+		{
+			qDebug() << "++++++++" << cause.getCauseName() << endl;
+		}*/
+
+		if (endflag)
+		{
+			break;
+		}
+
+		
+		if (conclusionNumPre == conclusion.count())
+		{
+			/*qDebug() << "----------"<<conclusionNumPre<<"----------------"<<conclusion.count() <<endl;*/
+			break;
+		}
+
 	}
+
+	
+
 }
 
 
@@ -217,3 +248,4 @@ bool ES::isCauseUseful(Cause cause)
 	}
 	return false;
 }
+
