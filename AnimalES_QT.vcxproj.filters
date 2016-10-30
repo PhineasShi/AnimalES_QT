@@ -77,6 +77,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_inputcauses.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="showexplanation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_showexplanation.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_showexplanation.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="animales.h">
@@ -100,6 +109,12 @@
     <CustomBuild Include="inputcauses.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="showexplanation.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="showexplanation.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_animales.h">
@@ -118,6 +133,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_inputcauses.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_showexplanation.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

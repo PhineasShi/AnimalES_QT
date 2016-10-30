@@ -8,6 +8,7 @@
 #include "expertSystem.h"
 #include "rulesmgmt.h"
 #include "inputcauses.h"
+#include "showexplanation.h"
 
 class AnimalES : public QMainWindow
 {
@@ -19,6 +20,7 @@ public:
 public slots:
 	void on_pushButton_createKB_clicked();
 	void on_pushButton_inputCauses_clicked();
+	void on_pushButton_explain_clicked();
 	void on_pushButton_modify_clicked();
 	void on_pushButton_think_clicked();
 private:
@@ -26,6 +28,7 @@ private:
 	ES es;
 	RulesMGMT *r;
 	InputCauses *i;
+	ShowExplanation *s;
 
 };
 

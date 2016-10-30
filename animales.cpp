@@ -40,6 +40,13 @@ void AnimalES::on_pushButton_inputCauses_clicked()
 	delete i;
 }
 
+void AnimalES::on_pushButton_explain_clicked()
+{
+	s = new ShowExplanation(&es);
+	s->exec();
+	delete s;
+}
+
 void AnimalES::on_pushButton_modify_clicked()
 {
 	r = new  RulesMGMT(&es);
