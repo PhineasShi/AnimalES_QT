@@ -48,6 +48,6 @@ private:
 	bool deleteCause(Cause cause);
 	bool isCauseExist(Cause cause);
 	bool isCauseUseful(Cause cause);	//Detemine the cause is useful or not.
-
+	bool ES::isCauseExsistInCon(Cause cause);
 };
 

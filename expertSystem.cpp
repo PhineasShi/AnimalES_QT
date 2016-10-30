@@ -102,14 +102,6 @@ void ES::think() {
 			int causeNum = causes.count();
 			int count = 0;
 
-			qDebug() << "rule " << i + 1 << " :   " << endl;
-			qDebug() << rule.getResult().getCauseName() << "  ";
-			for (Cause cause : causes)
-			{
-				qDebug() << cause.getCauseName() << "  ";
-			}
-			qDebug() << endl;
-
 			for (int i = 0; i < causeNum; i++)
 			{	
 				Cause ruleCause = causes.at(i);
@@ -125,7 +117,6 @@ void ES::think() {
 				}
 			}
 
-			qDebug() << "-------------match count:----" << count << endl;
 
 			if (causeNum == count)
 			{
@@ -136,6 +127,7 @@ void ES::think() {
 						dataBase.removeAt(index);
 					}
 
+					
 					used.push_back(rule);
 					knowledgeBase.removeAt(i);
 					Cause causet= rule.getResult();
@@ -156,11 +148,7 @@ void ES::think() {
 			i++;
 		}
 
-		/*for (Cause cause : dataBase)
-		{
-			qDebug() << "++++++++" << cause.getCauseName() << endl;
-		}*/
-
+		
 		if (endflag)
 		{
 			break;
@@ -169,7 +157,8 @@ void ES::think() {
 		
 		if (conclusionNumPre == conclusion.count())
 		{
-			/*qDebug() << "----------"<<conclusionNumPre<<"----------------"<<conclusion.count() <<endl;*/
+			conclusion.clear();
+			qDebug() << "result not found!" << endl;
 			break;
 		}
 
@@ -249,3 +238,8 @@ bool ES::isCauseUseful(Cause cause)
 	return false;
 }
 
+bool ES::isCauseExsistInCon(Cause cause)
+{
+	bool flag = false;
+	return flag;
+}

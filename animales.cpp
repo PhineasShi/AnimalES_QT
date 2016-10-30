@@ -62,8 +62,18 @@ void AnimalES::on_pushButton_think_clicked()
 
 	es.setDataBase(dataBase);
 	es.think();
-	QString result = es.getConclusion().last().getCauseName();
-	QMessageBox::information(this, "推理完成", result);
+	if (!es.getConclusion().isEmpty())
+	{
+		QString result = es.getConclusion().last().getCauseName();
+		QMessageBox::information(this, "推理完成", result);
+	}
+	else
+	{
+		QMessageBox::information(this, "推理完成", "推理完成,但并未找到结果");
+	}
+	
+	
+	
 	/*if (!es.getDataBase().isEmpty())
 	{
 		es.think();
