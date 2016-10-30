@@ -15,6 +15,7 @@ public:
 	void think();
 	void explain();
 
+	bool deleteRuleAt(int row);
 	
 
 
@@ -43,7 +44,8 @@ private:
 	QList<Cause> conclusion;
 	QList<Rule> knowledgeBase;
 	QList<Rule> used;
-	void deleteRule(Rule rule);
+	
+	bool deleteCause(Cause cause);
 	bool isCauseExist(Cause cause);
 	bool isCauseUseful(Cause cause);	//Detemine the cause is useful or not.
 

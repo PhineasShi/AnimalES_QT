@@ -158,9 +158,40 @@ void ES::explain() {
 	}
 }
 
-void ES::deleteRule(Rule rule)
+bool ES::deleteRuleAt(int row)
 {
-
+	bool causesDeleted= false;
+	Rule rule = knowledgeBase[row];
+	Cause result = rule.getResult();
+	//Try to delete the result
+	if (isCauseUseful(result))
+	{
+		deleteCause(result);
+		causesDeleted = true;
+	}
+	QList<Cause> causes = rule.getCauses();
+	//Try to delete the causes in the result
+	for (int i = 0; i < causes.length(); i++)
+	{
+		if (isCauseUseful(causes[i]))
+		{
+			deleteCause(causes[i]);
+			causesDeleted = true;
+		}
+	}
+	return causesDeleted;
+}
+bool ES::deleteCause(Cause cause)
+{
+	for (int i = 0; i < causeBase.length(); i++)
+	{
+		if (causeBase[i]==cause)
+		{
+			causeBase.removeAt(i);
+			return true;
+		}
+	}
+	return false;
 }
 bool ES::isCauseUseful(Cause cause)
 {

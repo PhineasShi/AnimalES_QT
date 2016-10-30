@@ -25,10 +25,10 @@ void RulesMGMT::on_pushButton_delete_clicked()
 	{
 		int currentRow = ui.listWidget_rules->currentRow();
 		delete ui.listWidget_rules->takeItem(currentRow);
-
-		QList<Rule> knowledgeBase = es->getKnowledgeBase();
-		knowledgeBase.removeAt(currentRow);
-		es->setKnowledgeBase(knowledgeBase);
+		if (es->deleteRuleAt(currentRow))
+		{
+			initCauseBoxs();
+		}
 	}
 }
 void RulesMGMT::on_toolButton_add_clicked()
