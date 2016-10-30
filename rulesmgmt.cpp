@@ -77,6 +77,8 @@ void RulesMGMT::initRuleLists()
 void RulesMGMT::initCauseBoxs()
 {
 	QList<Cause> causeList = es->getCauseBase();
+	ui.comboBox_cause->clear();
+	ui.comboBox_result->clear();
 	for (int i = 0; i < causeList.length(); i++)
 	{
 		ui.comboBox_cause->addItem(causeList[i].getCauseName());

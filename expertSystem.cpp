@@ -162,9 +162,10 @@ bool ES::deleteRuleAt(int row)
 {
 	bool causesDeleted= false;
 	Rule rule = knowledgeBase[row];
+	knowledgeBase.removeAt(row);
 	Cause result = rule.getResult();
 	//Try to delete the result
-	if (isCauseUseful(result))
+	if (!isCauseUseful(result))
 	{
 		deleteCause(result);
 		causesDeleted = true;
@@ -173,7 +174,7 @@ bool ES::deleteRuleAt(int row)
 	//Try to delete the causes in the result
 	for (int i = 0; i < causes.length(); i++)
 	{
-		if (isCauseUseful(causes[i]))
+		if (!isCauseUseful(causes[i]))
 		{
 			deleteCause(causes[i]);
 			causesDeleted = true;
@@ -202,7 +203,7 @@ bool ES::isCauseUseful(Cause cause)
 		//Is cause used in the result
 		if (rule.getResult()==cause)
 		{
-			return false;
+			return true;
 		}
 		QList<Cause> causes = rule.getCauses();
 		//Is the cause used in the causes
@@ -210,9 +211,9 @@ bool ES::isCauseUseful(Cause cause)
 		{
 			if (causes[i]==cause)
 			{
-				return false;
+				return true;
 			}
 		}
 	}
-	return true;
+	return false;
 }
