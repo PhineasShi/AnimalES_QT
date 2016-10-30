@@ -33,6 +33,13 @@ void AnimalES::on_pushButton_createKB_clicked()
 	}
 }
 
+void AnimalES::on_pushButton_inputCauses_clicked()
+{
+	i = new InputCauses(&es);
+	i->exec();
+	delete i;
+}
+
 void AnimalES::on_pushButton_modify_clicked()
 {
 	r = new  RulesMGMT(&es);

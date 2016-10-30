@@ -40,7 +40,7 @@ public:
     {
         if (InputCauses->objectName().isEmpty())
             InputCauses->setObjectName(QStringLiteral("InputCauses"));
-        InputCauses->resize(273, 327);
+        InputCauses->resize(250, 300);
         gridLayout_2 = new QGridLayout(InputCauses);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -93,7 +93,6 @@ public:
 
         gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
 
-        pushButton_confirm->raise();
 
         retranslateUi(InputCauses);
 
