@@ -42,8 +42,16 @@ void AnimalES::on_pushButton_modify_clicked()
 
 void AnimalES::on_pushButton_think_clicked()
 {
-	es.think();
-	QString result = es.getConclusion().last().getCauseName();
-	QMessageBox::information(this, "推理完成", result);
+	if (!es.getDataBase().isEmpty())
+	{
+		es.think();
+		QString result = es.getConclusion().last().getCauseName();
+		QMessageBox::information(this, "推理完成", result);
+	}
+	else
+	{
+		QMessageBox::warning(this, "推理失败", "请先输入事实");
+	}
+	
 }
 
