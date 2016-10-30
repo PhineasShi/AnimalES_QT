@@ -157,3 +157,31 @@ void ES::explain() {
 		qDebug() <<tmp.getCauseName()<< endl;
 	}
 }
+
+void ES::deleteRule(Rule rule)
+{
+
+}
+bool ES::isCauseUseful(Cause cause)
+{
+	QString causeName = cause.getCauseName();
+	for (int i = 0; i < knowledgeBase.length(); i++)
+	{
+		Rule rule = knowledgeBase[i];
+		//Is cause used in the result
+		if (rule.getResult()==cause)
+		{
+			return false;
+		}
+		QList<Cause> causes = rule.getCauses();
+		//Is the cause used in the causes
+		for (int i = 0; i < causes.length(); i++)
+		{
+			if (causes[i]==cause)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}

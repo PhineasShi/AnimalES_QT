@@ -11,6 +11,8 @@ public:
 	QString getCauseName();
 	void setCauseName(QString causeName);
 
+	bool operator==(Cause &cause);
+
 private:
 	QString causeName;
 };
