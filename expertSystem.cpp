@@ -85,7 +85,7 @@ bool ES::isCauseExist(Cause cause)
 */
 void ES::think() {
 
-	/*Cause temp;
+	Cause temp;
 	temp.setCauseName("cause1");
 	dataBase.push_back(temp);
 
@@ -93,7 +93,7 @@ void ES::think() {
 	dataBase.push_back(temp);
 
 	temp.setCauseName("cause4");
-	dataBase.push_back(temp);*/
+	dataBase.push_back(temp);
 
 
 	bool endflag = false;
