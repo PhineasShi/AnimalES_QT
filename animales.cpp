@@ -57,8 +57,11 @@ void AnimalES::on_pushButton_think_clicked()
 	temp.setCauseName("有奶");
 	dataBase.push_back(temp);
 
-	/*temp.setCauseName("有蹄");
-	dataBase.push_back(temp);*/
+	temp.setCauseName("毛发");
+	dataBase.push_back(temp);
+
+	temp.setCauseName("有蹄");
+	dataBase.push_back(temp);
 
 	es.setDataBase(dataBase);
 	es.think();

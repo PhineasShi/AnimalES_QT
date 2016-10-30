@@ -84,12 +84,11 @@ bool ES::isCauseExist(Cause cause)
 	在调用think函数之前，应当保证dataBase中有用户输入的前提条件  Causes
 */
 void ES::think() {
-
 	bool endflag = false;
 	while (true)
 	{
 		QList<int> delInx;
-		int conclusionNumPre = conclusion.count();
+		int UsedNumPre = used.count();
 		int ruleNum = knowledgeBase.count();
 		int i = 0;
 		while (i<knowledgeBase.count())
@@ -117,55 +116,55 @@ void ES::think() {
 				}
 			}
 
-
-			if (causeNum == count)
+			if (causeNum == count)		//如果某一条规则和综合数据库中的前提完全匹配
 			{
-				if (!rule.isLast())
+				if (!rule.isLast())		//如果这条规则不是最终的
 				{
 					for (int index : delInx)
 					{
-						dataBase.removeAt(index);
+						int inx = index;
+						dataBase.removeAt(index);	//修改综合数据库，将已经使用的事实移除
 					}
-
-					
-					used.push_back(rule);
-					knowledgeBase.removeAt(i);
-					Cause causet= rule.getResult();
-					conclusion.push_back(causet);
-					dataBase.push_back(causet);
+					Cause causet = rule.getResult();
+					QString name = causet.getCauseName();
+					if (!isCauseExsistInCon(causet))	//判断这个结论在综合数据库中是否存在，如果存在，就不再加入综合数据库
+					{
+						conclusion.push_back(causet);	
+						dataBase.push_back(causet);
+					}
+					used.push_back(rule);			//将这条不是最终的规则加入到已使用List（used）中
+					knowledgeBase.removeAt(i);		//将这条不是最终的规则移除
 					break;
 				}
 				else
 				{
-					endflag = true;
+					endflag = true;					//推理结束，并且已经找到这个动物
 					Cause causet= rule.getResult();
-					conclusion.push_back(causet);
+					conclusion.push_back(causet);	//将最终的这个动物放到conlusion中
 					qDebug() << "the last result is :  " << rule.getResult().getCauseName() << endl;
-					endflag = true;
 					break;
 				}
 			}
 			i++;
+			
+			/*for (Cause temp : conclusion)
+			{
+				qDebug() << temp.getCauseName()<<endl;
+			}*/
 		}
-
 		
 		if (endflag)
 		{
 			break;
 		}
 
-		
-		if (conclusionNumPre == conclusion.count())
+		if (UsedNumPre == used.count())	//如果根据已知事实，推理不出特定的动物，将conclusion清空
 		{
 			conclusion.clear();
 			qDebug() << "result not found!" << endl;
 			break;
 		}
-
 	}
-
-	
-
 }
 
 
@@ -241,5 +240,14 @@ bool ES::isCauseUseful(Cause cause)
 bool ES::isCauseExsistInCon(Cause cause)
 {
 	bool flag = false;
+
+	for (Cause tmp : conclusion)
+	{
+		if (cause.getCauseName() == tmp.getCauseName())
+		{
+			return true;
+		}
+	}
+	
 	return flag;
 }
