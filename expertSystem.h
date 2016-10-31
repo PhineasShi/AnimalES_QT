@@ -12,6 +12,7 @@ public:
 	ES();
 	~ES();
 	bool creatKB();
+	void saveKB();
 	void think();
 	void explain();
 

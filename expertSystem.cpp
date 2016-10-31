@@ -31,8 +31,7 @@ bool ES::creatKB()
 		QStringList qstr = line.split(":");
 
 		QString result = qstr.at(0);
-		QString isLaststr = qstr.at(1);
-		bool isLastbool = (isLaststr == "true");
+		bool isLastbool = QVariant::fromValue(qstr.at(1)).toBool();
 		QString causes = qstr.at(2);
 
 		QStringList causesQL = causes.split(",");
@@ -61,6 +60,31 @@ bool ES::creatKB()
 		knowledgeBase.push_back(tmpRule);
 	}
 	return true;
+}
+
+void ES::saveKB()
+{
+	QFile file("ES.dat");
+	//if (file.exists())
+	//{
+	//	file.remove();
+	//}
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+		return ;
+	QTextStream out(&file);
+	for (int i = 0; i < knowledgeBase.length(); i++)
+	{
+		Cause result = knowledgeBase[i].getResult();
+		out << result.getCauseName() << ":" << knowledgeBase[i].isLast() << ":";
+		QList<Cause> causes = knowledgeBase[i].getCauses();
+		int j = 0;
+		for (j = 0; j < causes.length()-1; j++)
+		{
+			out << causes[j].getCauseName() << ",";
+		}
+		out << causes[j].getCauseName() << endl;
+	}
+	file.close();
 }
 
 /*

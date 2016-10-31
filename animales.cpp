@@ -75,3 +75,12 @@ void AnimalES::on_pushButton_think_clicked()
 	}
 }
 
+void AnimalES::on_pushButton_quit_clicked()
+{
+	if (!es.getKnowledgeBase().isEmpty())
+	{
+		es.saveKB();
+	}
+	this->close();
+}
+

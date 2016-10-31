@@ -31,7 +31,7 @@ public:
     QGridLayout *gridLayout;
     QPushButton *pushButton_modify;
     QLabel *label;
-    QPushButton *pushButton;
+    QPushButton *pushButton_quit;
     QPushButton *pushButton_explain;
     QPushButton *pushButton_createKB;
     QPushButton *pushButton_think;
@@ -79,13 +79,13 @@ public:
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy);
-        pushButton->setFont(font);
+        pushButton_quit = new QPushButton(centralWidget);
+        pushButton_quit->setObjectName(QStringLiteral("pushButton_quit"));
+        sizePolicy.setHeightForWidth(pushButton_quit->sizePolicy().hasHeightForWidth());
+        pushButton_quit->setSizePolicy(sizePolicy);
+        pushButton_quit->setFont(font);
 
-        gridLayout->addWidget(pushButton, 7, 0, 1, 1);
+        gridLayout->addWidget(pushButton_quit, 7, 0, 1, 1);
 
         pushButton_explain = new QPushButton(centralWidget);
         pushButton_explain->setObjectName(QStringLiteral("pushButton_explain"));
@@ -137,7 +137,7 @@ public:
         AnimalESClass->setWindowTitle(QApplication::translate("AnimalESClass", "AnimalES", 0));
         pushButton_modify->setText(QApplication::translate("AnimalESClass", "\346\225\260\346\215\256\344\277\256\346\224\271", 0));
         label->setText(QApplication::translate("AnimalESClass", "\344\272\272\345\267\245\346\231\272\350\203\275\344\270\223\345\256\266\347\263\273\347\273\237\342\200\224\342\200\224\345\212\250\347\211\251\350\257\206\345\210\253", 0));
-        pushButton->setText(QApplication::translate("AnimalESClass", "\351\200\200\345\207\272\347\263\273\347\273\237", 0));
+        pushButton_quit->setText(QApplication::translate("AnimalESClass", "\351\200\200\345\207\272\347\263\273\347\273\237", 0));
         pushButton_explain->setText(QApplication::translate("AnimalESClass", "\346\216\250\347\220\206\350\247\243\351\207\212", 0));
         pushButton_createKB->setText(QApplication::translate("AnimalESClass", "\345\210\233\345\273\272\347\237\245\350\257\206\345\272\223", 0));
         pushButton_think->setText(QApplication::translate("AnimalESClass", "\350\277\233\350\241\214\346\216\250\347\220\206", 0));

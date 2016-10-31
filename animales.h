@@ -23,6 +23,7 @@ public slots:
 	void on_pushButton_explain_clicked();
 	void on_pushButton_modify_clicked();
 	void on_pushButton_think_clicked();
+	void on_pushButton_quit_clicked();
 private:
 	Ui::AnimalESClass ui;
 	ES es;
