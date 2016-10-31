@@ -109,6 +109,7 @@ bool ES::isCauseExist(Cause cause)
 */
 void ES::think() {
 	bool endflag = false;
+	conclusion = dataBase;
 	while (true)
 	{
 		QList<int> delInx;
@@ -119,7 +120,7 @@ void ES::think() {
 		{
 			
 			ruleNum = knowledgeBase.count();
-			int databaseNum = dataBase.count();
+			int conclusionNum = conclusion.count();
 			Rule rule = knowledgeBase.at(i);
 			QList<Cause> causes = rule.getCauses();
 			int causeNum = causes.count();
@@ -128,12 +129,12 @@ void ES::think() {
 			for (int i = 0; i < causeNum; i++)
 			{	
 				Cause ruleCause = causes.at(i);
-				for (int j = 0; j < databaseNum; j++)
+				for (int j = 0; j < conclusionNum; j++)
 				{
-					Cause databaseCause = dataBase.at(j);
-					if (ruleCause.getCauseName() == databaseCause.getCauseName())
+					Cause conclusionCause = conclusion.at(j);
+					if (ruleCause.getCauseName() == conclusionCause.getCauseName())
 					{
-						delInx.push_back(j);
+						//delInx.push_back(j);
 						count++;
 						break;
 					}
@@ -144,17 +145,17 @@ void ES::think() {
 			{
 				if (!rule.isLast())		//如果这条规则不是最终的
 				{
-					for (int index : delInx)
-					{
-						int inx = index;
-						dataBase.removeAt(index);	//修改综合数据库，将已经使用的事实移除
-					}
+					//for (int index : delInx)
+					//{
+					//	int inx = index;
+					//	conclusion.removeAt(index);	//修改综合数据库，将已经使用的事实移除
+					//}
 					Cause causet = rule.getResult();
 					QString name = causet.getCauseName();
 					if (!isCauseExsistInCon(causet))	//判断这个结论在综合数据库中是否存在，如果存在，就不再加入综合数据库
 					{
 						conclusion.push_back(causet);	
-						dataBase.push_back(causet);
+						/*dataBase.push_back(causet);*/
 					}
 					used.push_back(rule);			//将这条不是最终的规则加入到已使用List（used）中
 					knowledgeBase.removeAt(i);		//将这条不是最终的规则移除
@@ -164,7 +165,12 @@ void ES::think() {
 				{
 					endflag = true;					//推理结束，并且已经找到这个动物
 					Cause causet= rule.getResult();
-					conclusion.push_back(causet);	//将最终的这个动物放到conlusion中
+					/*for (Cause temp : causes)
+					{
+						conclusion.push_back(temp);
+					}*/
+					conclusion.push_back(causet);	//将最终的这个动物放到conlusion中	
+
 					qDebug() << "the last result is :  " << rule.getResult().getCauseName() << endl;
 					break;
 				}
