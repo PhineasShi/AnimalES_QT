@@ -23,6 +23,8 @@ bool ES::creatKB()
 	causeBase.clear();
 	//清空knowledgeBase
 	knowledgeBase.clear();
+	//清空conclusion
+	conclusion.clear();
 	Rule tmpRule;
 
 	//每次读取一行，并根据分隔符将字符串分别用来初始化各数据库
