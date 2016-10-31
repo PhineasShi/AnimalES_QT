@@ -20,6 +20,7 @@ public:
 public slots:
 	void on_pushButton_quit_clicked();
 	void on_pushButton_add_clicked();
+	void on_pushButton_modify_clicked();
 	void on_pushButton_delete_clicked();
 	void on_toolButton_add_clicked();
 	void on_toolButton_minus_clicked();

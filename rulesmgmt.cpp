@@ -61,6 +61,53 @@ void RulesMGMT::on_pushButton_add_clicked()
 	ui.listWidget_rules->addItem(itemStr);
 
 }
+void RulesMGMT::on_pushButton_modify_clicked()
+{
+	int currentRow = ui.listWidget_rules->currentRow();
+	QList<Cause> causes;
+	for (int i = 0; i < ui.listWidget_causes->count(); i++)
+	{
+		Cause cause;
+		cause.setCauseName(ui.listWidget_causes->item(i)->text());
+		causes.push_back(cause);
+		if (!es->isCauseExist(cause))
+		{
+			QList<Cause> causeBase = es->getCauseBase();
+			causeBase.push_back(cause);
+			es->setCauseBase(causeBase);
+		}
+	}
+	Cause result;
+	result.setCauseName(ui.comboBox_result->currentText());
+	if (!es->isCauseExist(result))
+	{
+		QList<Cause> causeBase = es->getCauseBase();
+		causeBase.push_back(result);
+		es->setCauseBase(causeBase);
+	}
+	Rule rule;
+	rule.setLast(ui.checkBox_isLast->isChecked());
+	rule.setCauses(causes);
+	rule.setResult(result);
+
+	if (es->deleteRuleAt(currentRow))
+	{
+		initCauseBoxs();
+	}
+	QList<Rule> knowledgeBase = es->getKnowledgeBase();
+	knowledgeBase.insert(currentRow,rule);
+	es->setKnowledgeBase(knowledgeBase);
+
+	QString itemStr;
+	for (int i = 0; i < causes.length(); i++)
+	{
+		itemStr += causes[i].getCauseName() + ",";
+	}
+	itemStr.chop(1);
+	itemStr += "-->" + result.getCauseName();
+	delete ui.listWidget_rules->takeItem(currentRow);
+	ui.listWidget_rules->insertItem(currentRow,itemStr);
+}
 void RulesMGMT::on_pushButton_delete_clicked()
 {
 	if (ui.listWidget_rules->count()>1)
