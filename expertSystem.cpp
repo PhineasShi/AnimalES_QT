@@ -95,7 +95,7 @@ bool ES::isCauseExist(Cause cause)
 	bool flag = false;
 	for (Cause tmp : causeBase)
 	{
-		if (tmp.getCauseName() == cause.getCauseName())
+		if (tmp == cause)
 		{
 			flag = true;
 		}

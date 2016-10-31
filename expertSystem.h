@@ -17,7 +17,7 @@ public:
 	void explain();
 
 	bool deleteRuleAt(int row);
-	
+	bool isCauseExist(Cause cause);
 
 
 
@@ -47,7 +47,7 @@ private:
 	QList<Rule> used;
 	
 	bool deleteCause(Cause cause);
-	bool isCauseExist(Cause cause);
+	
 	bool isCauseUseful(Cause cause);	//Detemine the cause is useful or not.
 	bool ES::isCauseExsistInCon(Cause cause);
 };

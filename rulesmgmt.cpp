@@ -21,6 +21,44 @@ void RulesMGMT::on_pushButton_quit_clicked()
 }
 void RulesMGMT::on_pushButton_add_clicked()
 {
+	QList<Cause> causes;
+	for (int i = 0; i < ui.listWidget_causes->count() ;i++)
+	{
+		Cause cause;
+		cause.setCauseName(ui.listWidget_causes->item(i)->text());
+		causes.push_back(cause);
+		if (!es->isCauseExist(cause))
+		{
+			QList<Cause> causeBase = es->getCauseBase();
+			causeBase.push_back(cause);
+			es->setCauseBase(causeBase);
+		}
+	}
+	Cause result;
+	result.setCauseName(ui.comboBox_result->currentText());
+	if (!es->isCauseExist(result))
+	{
+		QList<Cause> causeBase = es->getCauseBase();
+		causeBase.push_back(result);
+		es->setCauseBase(causeBase);
+	}
+	Rule rule;
+	rule.setLast(ui.checkBox_isLast->isChecked());
+	rule.setCauses(causes);
+	rule.setResult(result);
+	QList<Rule> knowledgeBase=es->getKnowledgeBase();
+	knowledgeBase.push_back(rule);
+	es->setKnowledgeBase(knowledgeBase);
+	initCauseBoxs();
+
+	QString itemStr;
+	for (int i = 0; i < causes.length(); i++)
+	{
+		itemStr += causes[i].getCauseName() + ",";
+	}
+	itemStr.chop(1);
+	itemStr += "-->" + result.getCauseName();
+	ui.listWidget_rules->addItem(itemStr);
 
 }
 void RulesMGMT::on_pushButton_delete_clicked()
@@ -55,6 +93,7 @@ void RulesMGMT::ruleItemsClicked(int row)
 	Rule currentRule = es->getKnowledgeBase()[row];
 	QList<Cause> causes = currentRule.getCauses();
 	ui.comboBox_result->setCurrentText(currentRule.getResult().getCauseName());
+	ui.checkBox_isLast->setChecked(currentRule.isLast());
 	ui.listWidget_causes->clear();
 	for (int i = 0; i < causes.length(); i++)
 	{

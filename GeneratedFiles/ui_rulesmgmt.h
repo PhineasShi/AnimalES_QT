@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
@@ -43,6 +44,7 @@ public:
     QPushButton *pushButton_delete;
     QPushButton *pushButton_modify;
     QPushButton *pushButton_quit;
+    QCheckBox *checkBox_isLast;
 
     void setupUi(QWidget *RulesMGMT)
     {
@@ -63,6 +65,7 @@ public:
         font.setPointSize(10);
         listWidget_causes->setFont(font);
         listWidget_causes->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        listWidget_causes->setWordWrap(true);
 
         gridLayout->addWidget(listWidget_causes, 3, 1, 6, 1);
 
@@ -70,6 +73,7 @@ public:
         listWidget_rules->setObjectName(QStringLiteral("listWidget_rules"));
         listWidget_rules->setFont(font);
         listWidget_rules->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        listWidget_rules->setWordWrap(true);
 
         gridLayout->addWidget(listWidget_rules, 2, 0, 7, 1);
 
@@ -147,6 +151,12 @@ public:
 
         gridLayout->addWidget(pushButton_quit, 6, 5, 2, 1);
 
+        checkBox_isLast = new QCheckBox(RulesMGMT);
+        checkBox_isLast->setObjectName(QStringLiteral("checkBox_isLast"));
+        checkBox_isLast->setFont(font);
+
+        gridLayout->addWidget(checkBox_isLast, 4, 2, 1, 3);
+
 
         gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
 
@@ -169,6 +179,7 @@ public:
         pushButton_delete->setText(QApplication::translate("RulesMGMT", "\345\210\240\351\231\244", 0));
         pushButton_modify->setText(QApplication::translate("RulesMGMT", "\344\277\256\346\224\271", 0));
         pushButton_quit->setText(QApplication::translate("RulesMGMT", "\351\200\200\345\207\272", 0));
+        checkBox_isLast->setText(QApplication::translate("RulesMGMT", "\346\234\200\347\273\210\347\273\223\350\256\272", 0));
     } // retranslateUi
 
 };
