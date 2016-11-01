@@ -72,7 +72,7 @@ void ES::saveKB()
 	//	file.remove();
 	//}
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-		return ;
+		return;
 	QTextStream out(&file);
 	for (int i = 0; i < knowledgeBase.length(); i++)
 	{
@@ -80,7 +80,7 @@ void ES::saveKB()
 		out << result.getCauseName() << ":" << knowledgeBase[i].isLast() << ":";
 		QList<Cause> causes = knowledgeBase[i].getCauses();
 		int j = 0;
-		for (j = 0; j < causes.length()-1; j++)
+		for (j = 0; j < causes.length() - 1; j++)
 		{
 			out << causes[j].getCauseName() << ",";
 		}
@@ -107,6 +107,14 @@ bool ES::isCauseExist(Cause cause)
 
 bool ES::isLastResult(Cause cause)
 {
+	for (int i = 0; i < knowledgeBase.length(); i++)
+	{
+		if (knowledgeBase[i].getResult() == cause&&knowledgeBase[i].isLast())
+		{
+			return true;
+		}
+
+	}
 	return false;
 }
 
@@ -124,9 +132,9 @@ void ES::think() {
 		int UsedNumPre = used.count();
 		int ruleNum = knowledgeBase.count();
 		int i = 0;
-		while (i<knowledgeBase.count())
+		while (i < knowledgeBase.count())
 		{
-			
+
 			ruleNum = knowledgeBase.count();
 			int conclusionNum = conclusion.count();
 			Rule rule = knowledgeBase.at(i);
@@ -135,7 +143,7 @@ void ES::think() {
 			int count = 0;
 
 			for (int i = 0; i < causeNum; i++)
-			{	
+			{
 				Cause ruleCause = causes.at(i);
 				for (int j = 0; j < conclusionNum; j++)
 				{
@@ -162,7 +170,7 @@ void ES::think() {
 					QString name = causet.getCauseName();
 					if (!isCauseExsistInCon(causet))	//判断这个结论在综合数据库中是否存在，如果存在，就不再加入综合数据库
 					{
-						conclusion.push_back(causet);	
+						conclusion.push_back(causet);
 						/*dataBase.push_back(causet);*/
 					}
 					used.push_back(rule);			//将这条不是最终的规则加入到已使用List（used）中
@@ -173,7 +181,7 @@ void ES::think() {
 				else
 				{
 					endflag = true;					//推理结束，并且已经找到这个动物
-					Cause causet= rule.getResult();
+					Cause causet = rule.getResult();
 					/*for (Cause temp : causes)
 					{
 						conclusion.push_back(temp);
@@ -184,10 +192,10 @@ void ES::think() {
 					procedure.push_back(rule);
 					break;
 				}
-			}			
-			i++;			
+			}
+			i++;
 		}
-		
+
 		if (endflag)
 		{
 			break;
@@ -207,10 +215,10 @@ void ES::think() {
 	{
 		QList<Cause> ctmp = temp.getCauses();
 		int j = 0;
-		for (; j < ctmp.count() - 1;j++)
+		for (; j < ctmp.count() - 1; j++)
 		{
 			Cause cause = ctmp.at(j);
-			qDebug() << cause.getCauseName()<<",";
+			qDebug() << cause.getCauseName() << ",";
 		}
 		Cause cause = ctmp.last();
 		qDebug() << cause.getCauseName() << "--->";
@@ -226,13 +234,13 @@ void ES::explain() {
 	qDebug() << "the conclusion is    " << endl;
 	for (Cause tmp : conclusion)
 	{
-		qDebug() <<tmp.getCauseName()<< endl;
+		qDebug() << tmp.getCauseName() << endl;
 	}
 }
 
 bool ES::deleteRuleAt(int row)
 {
-	bool causesDeleted= false;
+	bool causesDeleted = false;
 	Rule rule = knowledgeBase[row];
 	knowledgeBase.removeAt(row);
 	Cause result = rule.getResult();
@@ -258,7 +266,7 @@ bool ES::deleteCause(Cause cause)
 {
 	for (int i = 0; i < causeBase.length(); i++)
 	{
-		if (causeBase[i]==cause)
+		if (causeBase[i] == cause)
 		{
 			causeBase.removeAt(i);
 			return true;
@@ -273,7 +281,7 @@ bool ES::isCauseUseful(Cause cause)
 	{
 		Rule rule = knowledgeBase[i];
 		//Is cause used in the result
-		if (rule.getResult()==cause)
+		if (rule.getResult() == cause)
 		{
 			return true;
 		}
@@ -281,7 +289,7 @@ bool ES::isCauseUseful(Cause cause)
 		//Is the cause used in the causes
 		for (int i = 0; i < causes.length(); i++)
 		{
-			if (causes[i]==cause)
+			if (causes[i] == cause)
 			{
 				return true;
 			}
@@ -301,6 +309,6 @@ bool ES::isCauseExsistInCon(Cause cause)
 			return true;
 		}
 	}
-	
+
 	return flag;
 }
