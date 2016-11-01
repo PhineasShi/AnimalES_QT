@@ -27,7 +27,7 @@ class Ui_ShowExplanation
 public:
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
-    QListWidget *listWidget_causes;
+    QListWidget *listWidget_rules;
     QLabel *label;
     QPushButton *pushButton_quit;
 
@@ -43,15 +43,15 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        listWidget_causes = new QListWidget(ShowExplanation);
-        listWidget_causes->setObjectName(QStringLiteral("listWidget_causes"));
+        listWidget_rules = new QListWidget(ShowExplanation);
+        listWidget_rules->setObjectName(QStringLiteral("listWidget_rules"));
         QFont font;
         font.setFamily(QStringLiteral("Microsoft YaHei UI Light"));
         font.setPointSize(10);
-        listWidget_causes->setFont(font);
-        listWidget_causes->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        listWidget_rules->setFont(font);
+        listWidget_rules->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
-        gridLayout->addWidget(listWidget_causes, 1, 0, 1, 1);
+        gridLayout->addWidget(listWidget_rules, 1, 0, 1, 1);
 
         label = new QLabel(ShowExplanation);
         label->setObjectName(QStringLiteral("label"));

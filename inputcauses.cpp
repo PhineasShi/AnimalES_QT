@@ -19,7 +19,7 @@ void InputCauses::initCauseBox()
 	ui.comboBox_cause->clear();
 	for (int i = 0; i < causeList.length(); i++)
 	{
-		ui.comboBox_cause->addItem(causeList[i].getCauseName());
+			ui.comboBox_cause->addItem(causeList[i].getCauseName());		
 	}
 	ui.comboBox_cause->setCurrentText("");
 }

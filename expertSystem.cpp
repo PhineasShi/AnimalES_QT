@@ -105,6 +105,11 @@ bool ES::isCauseExist(Cause cause)
 	return flag;
 }
 
+bool ES::isLastResult(Cause cause)
+{
+	return false;
+}
+
 
 /*
 	在调用think函数之前，应当保证dataBase中有用户输入的前提条件  Causes

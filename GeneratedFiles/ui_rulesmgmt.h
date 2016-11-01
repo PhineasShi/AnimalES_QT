@@ -30,20 +30,20 @@ class Ui_RulesMGMT
 public:
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
-    QListWidget *listWidget_causes;
-    QListWidget *listWidget_rules;
-    QLabel *label;
     QLabel *label_3;
+    QListWidget *listWidget_rules;
+    QListWidget *listWidget_causes;
+    QLabel *label;
     QLabel *label_2;
     QPushButton *pushButton_add;
     QLabel *label_4;
-    QComboBox *comboBox_result;
     QToolButton *toolButton_minus;
+    QPushButton *pushButton_quit;
+    QPushButton *pushButton_modify;
+    QPushButton *pushButton_delete;
+    QComboBox *comboBox_result;
     QComboBox *comboBox_cause;
     QToolButton *toolButton_add;
-    QPushButton *pushButton_delete;
-    QPushButton *pushButton_modify;
-    QPushButton *pushButton_quit;
     QCheckBox *checkBox_isLast;
 
     void setupUi(QWidget *RulesMGMT)
@@ -58,16 +58,14 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        listWidget_causes = new QListWidget(RulesMGMT);
-        listWidget_causes->setObjectName(QStringLiteral("listWidget_causes"));
+        label_3 = new QLabel(RulesMGMT);
+        label_3->setObjectName(QStringLiteral("label_3"));
         QFont font;
         font.setFamily(QStringLiteral("Microsoft YaHei UI Light"));
         font.setPointSize(10);
-        listWidget_causes->setFont(font);
-        listWidget_causes->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        listWidget_causes->setWordWrap(true);
+        label_3->setFont(font);
 
-        gridLayout->addWidget(listWidget_causes, 3, 1, 6, 1);
+        gridLayout->addWidget(label_3, 2, 3, 1, 1);
 
         listWidget_rules = new QListWidget(RulesMGMT);
         listWidget_rules->setObjectName(QStringLiteral("listWidget_rules"));
@@ -77,17 +75,19 @@ public:
 
         gridLayout->addWidget(listWidget_rules, 2, 0, 7, 1);
 
+        listWidget_causes = new QListWidget(RulesMGMT);
+        listWidget_causes->setObjectName(QStringLiteral("listWidget_causes"));
+        listWidget_causes->setFont(font);
+        listWidget_causes->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        listWidget_causes->setWordWrap(true);
+
+        gridLayout->addWidget(listWidget_causes, 3, 1, 6, 1);
+
         label = new QLabel(RulesMGMT);
         label->setObjectName(QStringLiteral("label"));
         label->setFont(font);
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
-
-        label_3 = new QLabel(RulesMGMT);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setFont(font);
-
-        gridLayout->addWidget(label_3, 2, 3, 1, 1);
 
         label_2 = new QLabel(RulesMGMT);
         label_2->setObjectName(QStringLiteral("label_2"));
@@ -107,18 +107,36 @@ public:
 
         gridLayout->addWidget(label_4, 0, 4, 1, 5);
 
+        toolButton_minus = new QToolButton(RulesMGMT);
+        toolButton_minus->setObjectName(QStringLiteral("toolButton_minus"));
+        toolButton_minus->setFont(font);
+
+        gridLayout->addWidget(toolButton_minus, 3, 2, 1, 1);
+
+        pushButton_quit = new QPushButton(RulesMGMT);
+        pushButton_quit->setObjectName(QStringLiteral("pushButton_quit"));
+        pushButton_quit->setFont(font);
+
+        gridLayout->addWidget(pushButton_quit, 6, 5, 2, 1);
+
+        pushButton_modify = new QPushButton(RulesMGMT);
+        pushButton_modify->setObjectName(QStringLiteral("pushButton_modify"));
+        pushButton_modify->setFont(font);
+
+        gridLayout->addWidget(pushButton_modify, 5, 5, 1, 1);
+
+        pushButton_delete = new QPushButton(RulesMGMT);
+        pushButton_delete->setObjectName(QStringLiteral("pushButton_delete"));
+        pushButton_delete->setFont(font);
+
+        gridLayout->addWidget(pushButton_delete, 6, 2, 2, 3);
+
         comboBox_result = new QComboBox(RulesMGMT);
         comboBox_result->setObjectName(QStringLiteral("comboBox_result"));
         comboBox_result->setFont(font);
         comboBox_result->setEditable(true);
 
         gridLayout->addWidget(comboBox_result, 2, 4, 1, 5);
-
-        toolButton_minus = new QToolButton(RulesMGMT);
-        toolButton_minus->setObjectName(QStringLiteral("toolButton_minus"));
-        toolButton_minus->setFont(font);
-
-        gridLayout->addWidget(toolButton_minus, 3, 2, 1, 1);
 
         comboBox_cause = new QComboBox(RulesMGMT);
         comboBox_cause->setObjectName(QStringLiteral("comboBox_cause"));
@@ -132,24 +150,6 @@ public:
         toolButton_add->setFont(font);
 
         gridLayout->addWidget(toolButton_add, 2, 2, 1, 1);
-
-        pushButton_delete = new QPushButton(RulesMGMT);
-        pushButton_delete->setObjectName(QStringLiteral("pushButton_delete"));
-        pushButton_delete->setFont(font);
-
-        gridLayout->addWidget(pushButton_delete, 6, 2, 2, 3);
-
-        pushButton_modify = new QPushButton(RulesMGMT);
-        pushButton_modify->setObjectName(QStringLiteral("pushButton_modify"));
-        pushButton_modify->setFont(font);
-
-        gridLayout->addWidget(pushButton_modify, 5, 5, 1, 1);
-
-        pushButton_quit = new QPushButton(RulesMGMT);
-        pushButton_quit->setObjectName(QStringLiteral("pushButton_quit"));
-        pushButton_quit->setFont(font);
-
-        gridLayout->addWidget(pushButton_quit, 6, 5, 2, 1);
 
         checkBox_isLast = new QCheckBox(RulesMGMT);
         checkBox_isLast->setObjectName(QStringLiteral("checkBox_isLast"));
@@ -169,16 +169,16 @@ public:
     void retranslateUi(QWidget *RulesMGMT)
     {
         RulesMGMT->setWindowTitle(QApplication::translate("RulesMGMT", "RulesMGMT", 0));
-        label->setText(QApplication::translate("RulesMGMT", "\350\247\204\345\210\231", 0));
         label_3->setText(QApplication::translate("RulesMGMT", "-->", 0));
+        label->setText(QApplication::translate("RulesMGMT", "\350\247\204\345\210\231", 0));
         label_2->setText(QApplication::translate("RulesMGMT", "\345\211\215\346\217\220", 0));
         pushButton_add->setText(QApplication::translate("RulesMGMT", "\345\242\236\345\212\240", 0));
         label_4->setText(QApplication::translate("RulesMGMT", "\347\273\223\350\256\272", 0));
         toolButton_minus->setText(QApplication::translate("RulesMGMT", " -", 0));
-        toolButton_add->setText(QApplication::translate("RulesMGMT", "+", 0));
-        pushButton_delete->setText(QApplication::translate("RulesMGMT", "\345\210\240\351\231\244", 0));
-        pushButton_modify->setText(QApplication::translate("RulesMGMT", "\344\277\256\346\224\271", 0));
         pushButton_quit->setText(QApplication::translate("RulesMGMT", "\351\200\200\345\207\272", 0));
+        pushButton_modify->setText(QApplication::translate("RulesMGMT", "\344\277\256\346\224\271", 0));
+        pushButton_delete->setText(QApplication::translate("RulesMGMT", "\345\210\240\351\231\244", 0));
+        toolButton_add->setText(QApplication::translate("RulesMGMT", "+", 0));
         checkBox_isLast->setText(QApplication::translate("RulesMGMT", "\346\234\200\347\273\210\347\273\223\350\256\272", 0));
     } // retranslateUi
 

@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
-      <widget class="QListWidget" name="listWidget_causes">
+      <widget class="QListWidget" name="listWidget_rules">
        <property name="font">
         <font>
          <family>Microsoft YaHei UI Light</family>

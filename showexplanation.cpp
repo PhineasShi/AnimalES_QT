@@ -5,19 +5,27 @@ ShowExplanation::ShowExplanation(ES *es,QWidget *parent)
 {
 	this->es = es;
 	ui.setupUi(this);
-	initConclusionList();
+	initProcedureList();
 }
 
 ShowExplanation::~ShowExplanation()
 {
 
 }
-void ShowExplanation::initConclusionList()
+void ShowExplanation::initProcedureList()
 {
-	QList<Cause> conclusion = es->getConclusion();
-	for (int i = 0; i < conclusion.length(); i++)
+	QList<Rule> procedure = es->getProcedure();
+	for (int i = 0; i < procedure.length(); i++)
 	{
-		ui.listWidget_causes->addItem(conclusion[i].getCauseName());
+		QString itemStr;
+		QList<Cause> causes = procedure[i].getCauses();
+		for (int i = 0; i < causes.length(); i++)
+		{
+			itemStr += causes[i].getCauseName() + ",";
+		}
+		itemStr.chop(1);
+		itemStr += "-->" + procedure[i].getResult().getCauseName();
+		ui.listWidget_rules->addItem(itemStr);
 	}
 }
 void ShowExplanation::on_pushButton_quit_clicked()

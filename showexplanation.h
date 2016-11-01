@@ -19,7 +19,7 @@ public slots:
 private:
 	Ui::ShowExplanation ui;
 	ES *es;
-	void initConclusionList();
+	void initProcedureList();
 };
 
 #endif // SHOWEXPLANATION_H

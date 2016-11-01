@@ -18,6 +18,7 @@ public:
 
 	bool deleteRuleAt(int row);
 	bool isCauseExist(Cause cause);
+	bool isLastResult(Cause cause);
 
 
 
