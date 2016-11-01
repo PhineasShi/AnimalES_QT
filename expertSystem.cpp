@@ -110,6 +110,7 @@ bool ES::isCauseExist(Cause cause)
 	在调用think函数之前，应当保证dataBase中有用户输入的前提条件  Causes
 */
 void ES::think() {
+
 	bool endflag = false;
 	conclusion = dataBase;
 	while (true)
@@ -161,6 +162,7 @@ void ES::think() {
 					}
 					used.push_back(rule);			//将这条不是最终的规则加入到已使用List（used）中
 					knowledgeBase.removeAt(i);		//将这条不是最终的规则移除
+					procedure.push_back(rule);
 					break;
 				}
 				else
@@ -174,15 +176,11 @@ void ES::think() {
 					conclusion.push_back(causet);	//将最终的这个动物放到conlusion中	
 
 					qDebug() << "the last result is :  " << rule.getResult().getCauseName() << endl;
+					procedure.push_back(rule);
 					break;
 				}
-			}
-			i++;
-			
-			/*for (Cause temp : conclusion)
-			{
-				qDebug() << temp.getCauseName()<<endl;
-			}*/
+			}			
+			i++;			
 		}
 		
 		if (endflag)
@@ -197,6 +195,24 @@ void ES::think() {
 			break;
 		}
 	}
+
+	qDebug() << "-------------" << endl;
+
+	for (Rule temp : procedure)
+	{
+		QList<Cause> ctmp = temp.getCauses();
+		int j = 0;
+		for (; j < ctmp.count() - 1;j++)
+		{
+			Cause cause = ctmp.at(j);
+			qDebug() << cause.getCauseName()<<",";
+		}
+		Cause cause = ctmp.last();
+		qDebug() << cause.getCauseName() << "--->";
+		qDebug() << temp.getResult().getCauseName() << endl;
+
+	}
+
 }
 
 
