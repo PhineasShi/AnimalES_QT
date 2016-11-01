@@ -38,6 +38,9 @@ public:
 	void setUsed(QList<Rule> u) { used = u; };
 	QList<Rule> getUsed() { return used; };
 
+	void setProcedure(QList<Rule> proc) { procedure = proc; };
+	QList<Rule> getProcedure() { return procedure; };
+
 
 private:
 	QList<Cause> causeBase;
@@ -45,6 +48,12 @@ private:
 	QList<Cause> conclusion;
 	QList<Rule> knowledgeBase;
 	QList<Rule> used;
+	QList<Rule> procedure;
+
+
+
+
+
 	
 	bool deleteCause(Cause cause);
 	
