@@ -25,6 +25,9 @@ bool ES::creatKB()
 	knowledgeBase.clear();
 	//清空conclusion
 	conclusion.clear();
+	//清空步骤解释
+	procedure.clear();
+
 	Rule tmpRule;
 
 	//每次读取一行，并根据分隔符将字符串分别用来初始化各数据库
@@ -223,7 +226,12 @@ void ES::think() {
 		Cause cause = ctmp.last();
 		qDebug() << cause.getCauseName() << "--->";
 		qDebug() << temp.getResult().getCauseName() << endl;
+	}
 
+	/*推理结束后将规则库恢复*/
+	for (Rule rule : used)
+	{
+		knowledgeBase.push_back(rule);
 	}
 
 }
