@@ -126,7 +126,7 @@ bool ES::isLastResult(Cause cause)
 	在调用think函数之前，应当保证dataBase中有用户输入的前提条件  Causes
 */
 void ES::think() {
-
+	used.clear();
 	bool endflag = false;
 	/*将用户输入的事实加入到综合数据库中*/
 	conclusion = dataBase;
@@ -218,11 +218,16 @@ void ES::think() {
 		qDebug() << temp.getResult().getCauseName() << endl;
 	}
 
+
+	int knum = knowledgeBase.count();
+
 	/*推理结束后将规则库恢复*/
 	for (Rule rule : used)
 	{
 		knowledgeBase.push_back(rule);
 	}
+
+	knum = knowledgeBase.count();
 
 }
 
