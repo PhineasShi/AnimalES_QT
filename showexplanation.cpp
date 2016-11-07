@@ -14,6 +14,7 @@ ShowExplanation::~ShowExplanation()
 }
 void ShowExplanation::initProcedureList()
 {
+	ui.listWidget_rules->clear();
 	QList<Rule> procedure = es->getProcedure();
 	for (int i = 0; i < procedure.length(); i++)
 	{
