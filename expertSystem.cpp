@@ -25,6 +25,9 @@ bool ES::creatKB()
 	knowledgeBase.clear();
 	//清空conclusion
 	conclusion.clear();
+	//清空步骤解释
+	procedure.clear();
+
 	Rule tmpRule;
 
 	//每次读取一行，并根据分隔符将字符串分别用来初始化各数据库
@@ -123,9 +126,12 @@ bool ES::isLastResult(Cause cause)
 	在调用think函数之前，应当保证dataBase中有用户输入的前提条件  Causes
 */
 void ES::think() {
-
+	used.clear();
 	bool endflag = false;
+	/*将用户输入的事实加入到综合数据库中*/
 	conclusion = dataBase;
+	/*将解释说明清空*/
+	procedure.clear();
 	while (true)
 	{
 		QList<int> delInx;
@@ -134,14 +140,12 @@ void ES::think() {
 		int i = 0;
 		while (i < knowledgeBase.count())
 		{
-
 			ruleNum = knowledgeBase.count();
 			int conclusionNum = conclusion.count();
 			Rule rule = knowledgeBase.at(i);
 			QList<Cause> causes = rule.getCauses();
 			int causeNum = causes.count();
 			int count = 0;
-
 			for (int i = 0; i < causeNum; i++)
 			{
 				Cause ruleCause = causes.at(i);
@@ -150,7 +154,6 @@ void ES::think() {
 					Cause conclusionCause = conclusion.at(j);
 					if (ruleCause.getCauseName() == conclusionCause.getCauseName())
 					{
-						//delInx.push_back(j);
 						count++;
 						break;
 					}
@@ -161,17 +164,11 @@ void ES::think() {
 			{
 				if (!rule.isLast())		//如果这条规则不是最终的
 				{
-					//for (int index : delInx)
-					//{
-					//	int inx = index;
-					//	conclusion.removeAt(index);	//修改综合数据库，将已经使用的事实移除
-					//}
 					Cause causet = rule.getResult();
 					QString name = causet.getCauseName();
 					if (!isCauseExsistInCon(causet))	//判断这个结论在综合数据库中是否存在，如果存在，就不再加入综合数据库
 					{
 						conclusion.push_back(causet);
-						/*dataBase.push_back(causet);*/
 					}
 					used.push_back(rule);			//将这条不是最终的规则加入到已使用List（used）中
 					knowledgeBase.removeAt(i);		//将这条不是最终的规则移除
@@ -182,12 +179,7 @@ void ES::think() {
 				{
 					endflag = true;					//推理结束，并且已经找到这个动物
 					Cause causet = rule.getResult();
-					/*for (Cause temp : causes)
-					{
-						conclusion.push_back(temp);
-					}*/
 					conclusion.push_back(causet);	//将最终的这个动物放到conlusion中	
-
 					qDebug() << "the last result is :  " << rule.getResult().getCauseName() << endl;
 					procedure.push_back(rule);
 					break;
@@ -209,6 +201,7 @@ void ES::think() {
 		}
 	}
 
+	/*打印一些用于调试的信息*/
 	qDebug() << "-------------" << endl;
 
 	for (Rule temp : procedure)
@@ -223,8 +216,18 @@ void ES::think() {
 		Cause cause = ctmp.last();
 		qDebug() << cause.getCauseName() << "--->";
 		qDebug() << temp.getResult().getCauseName() << endl;
-
 	}
+
+
+	int knum = knowledgeBase.count();
+
+	/*推理结束后将规则库恢复*/
+	for (Rule rule : used)
+	{
+		knowledgeBase.push_back(rule);
+	}
+
+	knum = knowledgeBase.count();
 
 }
 
